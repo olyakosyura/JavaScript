@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+	<title>Event</title>
+	<meta charset='UTF-8'>
+	<script>
+		document.addEventListener("DOMContentLoaded",function(){
+			var counter = 0;
+			var object = document.getElementById("action");
+			console.log(object);
+			object.onclick = function(){
+				counter++;
+				document.getElementById("counter").innerText = counter;
+			}
+		})
+	</script>	
+</head>
+<body>
+	<button id="action">Push me!</button>
+	<div id="counter"> </div>
+</body>
+</html>
