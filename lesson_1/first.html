@@ -3,19 +3,28 @@
 	<title>Event</title>
 	<meta charset='UTF-8'>
 	<script>
+		n=25;
+		iwin = Math.floor(Math.random()*(n-1));
+		jwin = Math.floor(Math.random()*(n*2-1));
 		document.addEventListener("DOMContentLoaded",function(){
-			var counter = 0;
-			var object = document.getElementById("action");
-			console.log(object);
-			object.onclick = function(){
-				counter++;
-				document.getElementById("counter").innerText = counter;
-			}
+			var table = document.createElement('table');
+			table.id='matrix';
+			table.align= 'center';
+			table.border=2;
+			document.body.appendChild(table);
+			for (i=0;i<n;i++){
+				var newRow=table.insertRow(i);
+				for (j=0;j<n*2;j++){
+					var newCell = newRow.insertCell(j)
+					table.rows[i].cells[j].innerHTML='O';
+				}
+			}	
+			table.rows[iwin].cells[jwin].innerHTML='X';
+			alert('Start! Find X!');		
 		})
 	</script>	
 </head>
 <body>
-	<button id="action">Push me!</button>
-	<div id="counter"> </div>
+	
 </body>
 </html>
