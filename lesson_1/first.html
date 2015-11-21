@@ -2,7 +2,8 @@
 <head>
 	<title>Event</title>
 	<meta charset='UTF-8'>
-	<script>
+<!--	<script>
+		 
 		document.addEventListener("DOMContentLoaded",function(){
 			var counter = 0;
 			var object = document.getElementById("action");
@@ -11,11 +12,42 @@
 				counter++;
 				document.getElementById("counter").innerText = counter;
 			}
+		}) 
+		
+	</script>	-->
+	
+	<script>
+		
+		
+		document.addEventListener("DOMContentLoaded", function(){
+			var n = 25;
+			var newElem=document.createElement('table');
+			newElem.id='matrix';
+			newElem.border=1;
+			newElem.align='center';
+			
+			document.body.appendChild(newElem);
+			
+			for (i=0;i<n;i++){
+				var newRow = newElem.insertRow(i);
+				for (j=0;j<n*2;j++){
+					
+					var newCell = newRow.insertCell(j);
+					newCell.innerHTML='O'
+				}
+			
+			}
+			iwin = Math.floor(Math.random()*(n-1));
+			jwin = Math.floor(Math.random()*(n*2-1));
+			var table = document.body.children[0];
+			table.rows[iwin].cells[jwin].innerHTML='X'
+			
+			
+			alert('Start! Find X!');
 		})
-	</script>	
+	</script>
 </head>
 <body>
-	<button id="action">Push me!</button>
-	<div id="counter"> </div>
+
 </body>
 </html>
