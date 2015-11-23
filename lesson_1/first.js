@@ -1,0 +1,59 @@
+	function getChar(event) {
+  if (event.which == null) { 
+    if (event.keyCode < 32) return null;
+    return String.fromCharCode(event.keyCode)
+  }
+
+  if (event.which != 0 && event.charCode != 0) { 
+    if (event.which < 32) return null; 
+    return String.fromCharCode(event.which); 
+  }
+
+  return null; 
+} 
+		n=25;
+		iwin = Math.floor(Math.random()*(n-1));
+		jwin = Math.floor(Math.random()*(n*2-1));
+		document.addEventListener("DOMContentLoaded",function(){
+			var table = document.createElement('table');
+			table.id='matrix';
+			table.align= 'center';
+			table.border=2;
+			document.body.appendChild(table);
+			for (i=0;i<n;i++){
+				var newRow=table.insertRow(i);
+				for (j=0;j<n*2;j++){
+					var newCell = newRow.insertCell(j)
+					table.rows[i].cells[j].innerHTML='O';
+				}
+			}	
+			table.rows[iwin].cells[jwin].innerHTML='X';
+			alert('Start! Find X!');	
+			ip=0;
+			jp=0;	
+
+			addEventListener("keypress", function(event) {
+    					console.log(String.fromCharCode(event.charCode));
+					e = String.fromCharCode(event.charCode);	
+					table.rows[ip].cells[jp].style.backgroundColor='blue';
+			
+								
+					if (e=='37'){jp=(jp-1+n*2)%(n*2)}
+					if (e=='38'){ip=(ip-1+n)%n}
+					if (e=='39'){jp=(jp+1)%(n*2)}
+					if (e=='40'){ip=(ip+1)%n}
+					table.rows[ip].cells[jp].style.backgroundColor='red';
+				
+ 			 	});
+			do{
+				table.rows[ip].cells[jp].style.backgroundColor='red';
+				if ((ip==iwin)&&(jp==jwin)){
+					alert('You win!');
+					break;				
+				}
+				
+				ip=iwin;
+jp=jwin;
+			}while(true)
+		})
+			
