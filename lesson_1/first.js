@@ -1,6 +1,5 @@
 
-var table.keypress = handle;
-		
+	
 n=25;
 iwin = Math.floor(Math.random()*(n-1));
 jwin = Math.floor(Math.random()*(n*2-1));
@@ -26,7 +25,9 @@ document.addEventListener("DOMContentLoaded",function(){
 	table.id='matrix';
 	table.align= 'center';
 	table.border=2;
+	table.keypress = handle;
 	document.body.appendChild(table);
+	
 	for (i=0;i<n;i++){
 		var newRow=table.insertRow(i);
 		for (j=0;j<n*2;j++){
