@@ -1,22 +1,26 @@
-function getChar(event) {
-	if (event.which == null) { 
-		if (event.keyCode < 32) return null;
-		return String.fromCharCode(event.keyCode)
-	}
 
-	if (event.which != 0 && event.charCode != 0) { 
-		if (event.which < 32) return null; 
-		return String.fromCharCode(event.which); 
-	}
-
-	return null; 
-} 
-
-
+var table.keypress = handle;
+		
 n=25;
 iwin = Math.floor(Math.random()*(n-1));
 jwin = Math.floor(Math.random()*(n*2-1));
-
+function handle(e) {
+  if (form.elements[e.type + 'Ignore'].checked) return;
+			table.rows[ip].cells[jp].style.backgroundColor='blue';
+			if (e.keyCode=='37'){jp=(jp-1+n*2)%(n*2)}
+			if (e.keyCode=='38'){ip=(ip-1+n)%n}
+			if (e.keyCode=='39'){jp=(jp+1)%(n*2)}
+			if (e.keyCode=='40'){ip=(ip+1)%n}
+			table.rows[ip].cells[jp].focus();
+			table.rows[ip].cells[jp].style.backgroundColor='red';
+		if ((ip==iwin)&&(jp==jwin)){
+			alert('You win!');
+			break;				
+		}
+  if (form.elements[e.type + 'Stop'].checked) {
+    e.preventDefault();
+  }
+}
 document.addEventListener("DOMContentLoaded",function(){
 	var table = document.createElement('table');
 	table.id='matrix';
@@ -37,29 +41,13 @@ document.addEventListener("DOMContentLoaded",function(){
 	ip=0;
 	jp=0;	
 	
-	addEventListener("keypress", function(event) {
 			table.rows[ip].cells[jp].focus();
 			console.log(String.fromCharCode(event.charCode));
 			e = String.fromCharCode(event.charCode);	
 			table.rows[ip].cells[jp].style.backgroundColor='blue';
+		
+		
+		
 	
-						
-			if (e=='37'){jp=(jp-1+n*2)%(n*2)}
-			if (e=='38'){ip=(ip-1+n)%n}
-			if (e=='39'){jp=(jp+1)%(n*2)}
-			if (e=='40'){ip=(ip+1)%n}
-			table.rows[ip].cells[jp].style.backgroundColor='red';
-		
-		});
-	do{
-		table.rows[ip].cells[jp].style.backgroundColor='blue';
-		if ((ip==iwin)&&(jp==jwin)){
-			alert('You win!');
-			break;				
-		}
-		
-		ip=iwin;
-jp=jwin;
-	}while(false)
 })
 	
